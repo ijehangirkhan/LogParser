@@ -1,9 +1,12 @@
 import re
 
+# Extract data from file
 file = open('sample.log', 'r')
 lines = file.readlines()
 file.close()
 
+
+# Calculate system OFF time
 off_time_in_seconds = float()
 for line in lines:
     line = line.strip()
@@ -23,6 +26,7 @@ for line in lines:
                 off_time_in_seconds = off_time_in_seconds + (float(value) / 1000)
 # print(off_time_in_seconds)
 
+# Calculate system ON time
 on_time_in_seconds = float()
 for line in lines:
     line = line.strip()
@@ -41,9 +45,13 @@ for line in lines:
             elif index == 3:
                 on_time_in_seconds = on_time_in_seconds + (float(value) / 1000)
 # print(on_time_in_seconds)
+
+
 total_time_in_seconds = off_time_in_seconds - on_time_in_seconds
 print(f"The system remained ON for {total_time_in_seconds} seconds.")
 
+
+# Extract timestamp of Errors
 print("Error timestamps are following:")
 for line in lines:
     line = line.strip()
